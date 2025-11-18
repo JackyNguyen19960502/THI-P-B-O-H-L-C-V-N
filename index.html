@@ -2,12 +2,13 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <title>Thiệp Cưới Online</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
+/* --- CƠ BẢN --- */
 body {
     margin: 0;
     font-family: "Times New Roman", serif;
@@ -34,6 +35,7 @@ body {
     height: 100%;
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
     transition: transform 1.5s ease-in-out;
     z-index: 8;
 }
@@ -52,6 +54,7 @@ body {
 .welcome-content {
     text-align: center;
     z-index: 11;
+    padding: 0 10px;
 }
 
 .title-top {
@@ -68,6 +71,7 @@ body {
     align-items: center;
     max-width: 600px;
     margin: auto;
+    gap: 10px;
 }
 
 .name-left, .name-right {
@@ -79,6 +83,7 @@ body {
 
 .hy-text {
     width: 260px;
+    max-width: 100%;
 }
 
 .open-btn {
@@ -123,6 +128,49 @@ body {
     0% { transform: translate(0,0) rotate(0deg); opacity: 1; }
     50% { transform: translate(-15px, 50vh) rotate(180deg); }
     100% { transform: translate(5px, 100vh) rotate(360deg); opacity: 0; }
+}
+
+/* --- MOBILE RESPONSIVE --- */
+@media (max-width: 768px) {
+    .title-top {
+        font-size: 40px;
+        text-shadow: 0 0 8px #ffc0cb;
+    }
+
+    .names-wrapper {
+        max-width: 300px;
+        gap: 5px;
+    }
+
+    .name-left, .name-right {
+        font-size: 35px;
+        text-shadow: 0 0 6px #ffccd5;
+    }
+
+    .hy-text {
+        width: 100px;
+    }
+
+    .open-btn {
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+
+    .card {
+        max-width: 90%;
+        margin: 50px auto;
+        padding: 20px;
+    }
+
+    .door {
+        width: 50%;
+        height: 100%;
+    }
+
+    .fall-item {
+        width: 8px;
+        height: 8px;
+    }
 }
 </style>
 </head>
@@ -173,7 +221,11 @@ setInterval(() => {
     item.classList.add("fall-item");
     item.style.backgroundImage = `url(${fallImages[0]})`;
     item.style.left = Math.random() * 100 + "vw";
-    item.style.animationDuration = (4 + Math.random()*4) + "s";
+
+    // Mobile chậm hơn
+    const duration = window.innerWidth <= 768 ? (6 + Math.random()*3) : (4 + Math.random()*4);
+    item.style.animationDuration = duration + "s";
+
     document.body.appendChild(item);
     item.addEventListener("animationend", () => item.remove());
 }, 250);
