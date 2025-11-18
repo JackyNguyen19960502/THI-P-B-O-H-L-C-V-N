@@ -33,21 +33,24 @@ body {
     top: 0;
     width: 50%;
     height: 100%;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    overflow: hidden;
     transition: transform 1.5s ease-in-out;
     z-index: 8;
 }
 
+.door img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* giữ tỉ lệ ảnh */
+    display: block;
+}
+
 .left-door {
     left: 0;
-    background-image: url("trai.png");
 }
 
 .right-door {
     right: 0;
-    background-image: url("phai.png");
     transform-origin: right;
 }
 
@@ -59,7 +62,7 @@ body {
 
 .title-top {
     font-family: 'Dancing Script', cursive;
-    font-size: 100px;
+    font-size: 80px;
     color: #d45555;
     text-shadow: 0 0 12px #ffc0cb;
     margin-bottom: 20px;
@@ -76,13 +79,13 @@ body {
 
 .name-left, .name-right {
     font-family: 'Dancing Script', cursive;
-    font-size: 80px;
+    font-size: 70px;
     color: #d45555;
-    text-shadow: 0 0 20px #ffccd5;
+    text-shadow: 0 0 12px #ffccd5;
 }
 
 .hy-text {
-    width: 360px;
+    width: 260px;
     max-width: 100%;
 }
 
@@ -163,8 +166,7 @@ body {
     }
 
     .door {
-        width: 50%;
-        height: 100%;
+        width: 45%; /* cửa mỏng hơn trên mobile */
     }
 
     .fall-item {
@@ -179,8 +181,12 @@ body {
 
 <!-- MÀN HÌNH CHÀO -->
 <div class="welcome-screen" id="welcome">
-    <div class="door left-door"></div>
-    <div class="door right-door"></div>
+    <div class="door left-door">
+        <img src="trai.png" alt="Cửa trái">
+    </div>
+    <div class="door right-door">
+        <img src="phai.png" alt="Cửa phải">
+    </div>
 
     <div class="welcome-content">
         <div class="title-top">THIỆP BÁO HỶ</div>
