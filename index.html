@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thiệp Cưới Online</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: "Times New Roman", serif;
+    overflow: hidden;
+    background: #ffffff;
+}
+
+/* MÀN HÌNH CHÀO */
+.welcome-screen {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    z-index: 10;
+}
+
+.door {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: transform 1.5s ease-in-out;
+    z-index: 8;
+}
+
+.left-door {
+    left: 0;
+    background-image: url("trai.png");
+}
+
+.right-door {
+    right: 0;
+    background-image: url("phai.png");
+    transform-origin: right;
+}
+
+.welcome-content {
+    text-align: center;
+    z-index: 11;
+}
+
+.title-top {
+    font-family: 'Dancing Script', cursive;
+    font-size: 80px;
+    color: #d45555;
+    text-shadow: 0 0 12px #ffc0cb;
+    margin-bottom: 20px;
+}
+
+.names-wrapper {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    max-width: 600px;
+    margin: auto;
+}
+
+.name-left, .name-right {
+    font-family: 'Dancing Script', cursive;
+    font-size: 70px;
+    color: #d45555;
+    text-shadow: 0 0 12px #ffccd5;
+}
+
+.hy-text {
+    width: 260px;
+}
+
+.open-btn {
+    margin-top: 26px;
+    padding: 14px 32px;
+    font-size: 20px;
+    border: none;
+    border-radius: 14px;
+    background: #d45555;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* CARD BÊN TRONG */
+.card {
+    text-align: center;
+    padding: 30px;
+    max-width: 520px;
+    margin: 80px auto;
+    background: white;
+    border-radius: 18px;
+    box-shadow: 0 0 18px rgba(0,0,0,0.15);
+}
+
+.hide { display: none; }
+
+/* HOA RƠI */
+.fall-item {
+    position: fixed;
+    top: -50px;
+    width: 12px;
+    height: 12px;
+    background-size: cover;
+    pointer-events: none;
+    opacity: 0.95;
+    z-index: 20;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    0% { transform: translate(0,0) rotate(0deg); opacity: 1; }
+    50% { transform: translate(-15px, 50vh) rotate(180deg); }
+    100% { transform: translate(5px, 100vh) rotate(360deg); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- MÀN HÌNH CHÀO -->
+<div class="welcome-screen" id="welcome">
+    <div class="door left-door"></div>
+    <div class="door right-door"></div>
+
+    <div class="welcome-content">
+        <div class="title-top">THIỆP BÁO HỶ</div>
+
+        <div class="names-wrapper">
+            <div class="name-left">Hồng Vân</div>
+            <img src="hinhanh.png" class="hy-text">
+            <div class="name-right">Thái Lực</div>
+        </div>
+
+        <button class="open-btn" onclick="openCard()">Xin mời</button>
+    </div>
+</div>
+
+<!-- TRANG THIỆP -->
+<div class="card hide" id="card">
+    <h2>Thiệp Báo Hỷ</h2>
+    <h1>Nguyễn Thái Lực & Bùi Thị Hồng Vân</h1>
+    <p><strong>11:00 - Ngày 14/12/2025</strong></p>
+    <p>Nhà hàng Queen Plaza, TP.HCM</p>
+</div>
+
+<script>
+function openCard() {
+    document.querySelector(".left-door").style.transform = "translateX(-100%)";
+    document.querySelector(".right-door").style.transform = "translateX(100%)";
+
+    setTimeout(() => {
+        document.getElementById("welcome").style.display = "none";
+        document.getElementById("card").classList.remove("hide");
+    }, 1500);
+}
+
+/* Hoa rơi */
+const fallImages = ["sakura.png"];
+setInterval(() => {
+    const item = document.createElement("div");
+    item.classList.add("fall-item");
+    item.style.backgroundImage = `url(${fallImages[0]})`;
+    item.style.left = Math.random() * 100 + "vw";
+    item.style.animationDuration = (4 + Math.random()*4) + "s";
+    document.body.appendChild(item);
+    item.addEventListener("animationend", () => item.remove());
+}, 250);
+</script>
+
+</body>
+</html>
