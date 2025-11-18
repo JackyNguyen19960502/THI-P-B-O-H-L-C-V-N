@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>Thiệp Báo Hỷ Lực&Vân</title>
+<title>Thiệp Cưới Online</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
 
@@ -20,29 +20,23 @@ body {
 .welcome-screen {
     position: fixed;
     inset: 0;
-    overflow: hidden;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;   /* nội dung xếp theo chiều dọc */
+    align-items: center;      /* căn giữa chiều ngang */
+    justify-content: center;  /* căn giữa chiều cao */
     background: white;
     z-index: 10;
 }
 
+/* CỬA TRÁI / PHẢI */
 .door {
     position: absolute;
     top: 0;
-    width: 50%;
-    height: 100%;
+    width: 50%;         /* mỗi cánh cửa chiếm nửa màn hình */
+    height: 100vh;      /* full chiều cao màn hình */
     overflow: hidden;
-    transition: transform 1.5s ease-in-out;
     z-index: 8;
-}
-
-.door img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* giữ tỉ lệ ảnh */
-    display: block;
+    transition: transform 1.5s ease-in-out;
 }
 
 .left-door {
@@ -51,12 +45,21 @@ body {
 
 .right-door {
     right: 0;
-    transform-origin: right;
+    transform-origin: right center;
 }
 
+.door img {
+    width: 100%;       /* phủ toàn bộ div */
+    height: 100%;
+    object-fit: cover; /* lấp đầy div, giữ chi tiết */
+    display: block;
+}
+
+/* NỘI DUNG CHÀO */
 .welcome-content {
-    text-align: center;
+    position: relative;
     z-index: 11;
+    text-align: center;
     padding: 0 10px;
 }
 
@@ -85,7 +88,7 @@ body {
 }
 
 .hy-text {
-    width: 260px;
+    width: 360px;
     max-width: 100%;
 }
 
@@ -161,16 +164,13 @@ body {
 
     .card {
         max-width: 90%;
-        margin: 50px auto;
-        padding: 20px;
+        margin: 20px auto;
+        padding: 10px;
     }
 
     .door {
-        width: 50vw;   /* nửa chiều rộng màn hình */
-        height: 80vh;  /* cao 80% màn hình để cửa lớn hơn */
-    }
-    .door img {
-        object-fit: cover; /* phủ đầy div */
+        width: 50%;
+        height: 100vh;
     }
 
     .fall-item {
@@ -232,7 +232,6 @@ setInterval(() => {
     item.style.backgroundImage = `url(${fallImages[0]})`;
     item.style.left = Math.random() * 100 + "vw";
 
-    // Mobile chậm hơn
     const duration = window.innerWidth <= 768 ? (6 + Math.random()*3) : (4 + Math.random()*4);
     item.style.animationDuration = duration + "s";
 
